@@ -4,6 +4,6 @@ sudo apt-get install curl git-all cmake gcc libssl-dev pkg-config libclang-dev l
 
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-cargo install --locked --git https://github.com/MystenLabs/sui.git --branch devnet sui
+cargo install --locked --git https://github.com/MystenLabs/sui.git --branch "releases/sui-v1.16.0-release" sui
 
 sui --version
