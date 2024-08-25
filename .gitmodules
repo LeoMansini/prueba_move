@@ -1,0 +1,3 @@
+[submodule "move"]
+	path = move
+	url = https://github.com/move-language/move.git
