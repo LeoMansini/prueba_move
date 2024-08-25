@@ -1,9 +1,9 @@
-sudo apt-get update
+cd move
 
-sudo apt-get install curl git-all cmake gcc libssl-dev pkg-config libclang-dev libpq-dev build-essential
+./scripts/dev_setup.sh -ypt
 
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source ~/.profile
 
-cargo install --locked --git https://github.com/MystenLabs/sui.git --branch "releases/sui-v1.16.0-release" sui
+cargo install --path language/tools/move-cli --locked
 
-sui --version
+move --help
