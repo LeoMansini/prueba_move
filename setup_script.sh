@@ -1,5 +1,7 @@
 cd move
 
+sudo apt install nodejs 
+
 ./scripts/dev_setup.sh -ypt
 
 source ~/.profile
