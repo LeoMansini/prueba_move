@@ -1,11 +1,9 @@
-cd move
-
-sudo apt install nodejs 
-
-./scripts/dev_setup.sh -ypt
+bash prover_setup.sh
 
 source ~/.profile
 
-cargo install --path language/tools/move-cli --locked
+cd move-sui
+
+cargo install --path crates/move-cli --locked
 
 move --help

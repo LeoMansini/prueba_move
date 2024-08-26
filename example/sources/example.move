@@ -1,15 +1,16 @@
-module address::step_1 {
-    fun sum(first: u64, second: u64): u64 {
-        first + second
-    }
+module book::my_module_with_members {
+    // import
+    use book::my_module;
 
-    spec sum {
-        aborts_if first + second > MAX_U64;
-        ensures result == first + second;
-    }
+    // a constant
+    const CONST: u8 = 0;
 
-    spec module {
-       pragma aborts_if_is_strict;
-    }
+    // a struct
+    public struct Struct {}
+
+    // method alias
+    public use fun function as Struct.struct_fun;
+
+    // function
+    fun function(_: &Struct) { /* function body */ }
 }
-
