@@ -1,0 +1,24 @@
+
+
+module my_project::use_warrior {
+    use simple_warrior::example::{Self, Warrior, Sword, new_warrior, new_sword, equip, unequip};
+    use sui::tx_context::TxContext;
+    use sui::test_scenario as ts;
+    
+    public fun unequip_sword_from_new_warrior(ctx: &mut TxContext): Sword {
+        // Create a new warrior
+        let warrior = new_warrior(ctx);
+
+        // Create a new sword and equip it
+        let sword = new_sword(50, ctx);
+        equip(&mut warrior, sword);
+
+        // Unequip the sword
+        let unequipped_sword = unequip(&mut warrior);
+
+        // No need to access Sword fields, just run the methods
+        // Clean up
+        let Sword { id, strength: _ } = unequipped_sword;
+        object::delete(id);
+    }
+}
