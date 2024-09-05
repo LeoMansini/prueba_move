@@ -41,6 +41,19 @@ module simple_warrior::example {
         option::extract(&mut warrior.sword)
     }
 
+    spec unequip {
+        requires option::is_some(&warrior.sword); // Ensure sword is equipped before unequipping
+        ensures result == option::extract(&mut warrior.sword); // Ensure result is the extracted sword
+    }
+
+
+    public fun test_unequip_empty(ctx: &mut TxContext) {
+        let w = new_warrior(ctx);
+        assert!(option::is_some(&w.sword), ENotEquipped);
+        let _s = unequip(&mut w);
+        abort 1337
+    }
+
     // === Tests ===
     #[test_only] use sui::test_scenario as ts;
 
@@ -84,15 +97,6 @@ module simple_warrior::example {
         object::delete(id);
 
         ts::end(ts);
-    }
-
-    #[test]
-    #[expected_failure(abort_code = ENotEquipped)]
-    fun test_unequip_empty() {
-        let ts = ts::begin(@0xA);
-        let w = new_warrior(ts::ctx(&mut ts));
-        let _s = unequip(&mut w);
-        abort 1337
     }
 
     #[test]
