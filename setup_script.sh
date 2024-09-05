@@ -5,5 +5,6 @@ source ~/.profile
 cd move-sui
 
 cargo install --path crates/move-cli --locked
+cargo install --path crates/move-prover --locked
 
-move --help
+move --help && move-prover --help

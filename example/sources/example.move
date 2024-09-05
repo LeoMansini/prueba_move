@@ -1,16 +1,14 @@
-module book::my_module_with_members {
-    // import
-    use book::my_module;
+#[allow(unused_function)]
+module book::step_3 {
 
-    // a constant
-    const CONST: u8 = 0;
+    const MAX_U32: u64 = 1 << 32 - 1;
 
-    // a struct
-    public struct Struct {}
+    fun double(number: u64): u64 {
+        assert!(number <= MAX_U32, 0);
+        sum(number, number)
+    }
 
-    // method alias
-    public use fun function as Struct.struct_fun;
-
-    // function
-    fun function(_: &Struct) { /* function body */ }
+    public fun sum(first: u64, second: u64): u64 {
+        first + second
+    }
 }
